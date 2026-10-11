@@ -5,7 +5,36 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 VER="${1:-1.3.0}"
-ARCH="$(dpkg --print-architecture 2>/dev/null || echo amd64)"
+HOST_ARCH="$(dpkg --print-architecture 2>/dev/null || echo amd64)"
+ARCH="${2:-$HOST_ARCH}"
+
+# Cross-building (./build-deb.sh 1.3.0 arm64) needs the target toolchain and the target's
+# -dev packages via dpkg multiarch, e.g. on an amd64 Ubuntu host:
+#   sudo dpkg --add-architecture arm64   # + an arm64 ports source, see linux/README.md
+#   sudo apt install crossbuild-essential-arm64 libibus-1.0-dev:arm64 \
+#                    libpulse-dev:arm64 libcurl4-openssl-dev:arm64
+if [ "$ARCH" != "$HOST_ARCH" ]; then
+    case "$ARCH" in
+        arm64) TRIPLE=aarch64-linux-gnu ;;
+        armhf) TRIPLE=arm-linux-gnueabihf ;;
+        *) echo "no cross toolchain mapping for '$ARCH'" >&2; exit 1 ;;
+    esac
+    command -v "$TRIPLE-g++" >/dev/null || { echo "missing $TRIPLE-g++ (install crossbuild-essential-$ARCH)" >&2; exit 1; }
+    # Prefer a SYSROOT of extracted target .debs (see linux/README.md). Do NOT `apt install`
+    # the target's -dev packages on the host: they drag in non-multiarch tooling that
+    # REPLACES the host's own (it removed the host python and broke apt when I tried it).
+    if [ -n "${SYSROOT:-}" ]; then
+        [ -d "$SYSROOT" ] || { echo "SYSROOT=$SYSROOT does not exist" >&2; exit 1; }
+        export CXX="$TRIPLE-g++ --sysroot=$SYSROOT"
+        export PKG_CONFIG_SYSROOT_DIR="$SYSROOT"
+        export PKG_CONFIG_LIBDIR="$SYSROOT/usr/lib/$TRIPLE/pkgconfig:$SYSROOT/usr/share/pkgconfig"
+    else
+        export CXX="$TRIPLE-g++"
+        export PKG_CONFIG_LIBDIR="/usr/lib/$TRIPLE/pkgconfig:/usr/share/pkgconfig"
+    fi
+    export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR"
+    echo "cross-building for $ARCH with $CXX"
+fi
 
 ./build.sh                                    # -> dist/ibus-engine-bangla (+ self-test)
 

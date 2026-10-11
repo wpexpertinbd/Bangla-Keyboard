@@ -56,9 +56,38 @@ cd ~ && git clone https://github.com/wpexpertinbd/bangla-keyboard.git && \
 cd bangla-keyboard/linux && sudo bash install.sh
 ```
 **On ARM (arm64/aarch64)** — Raspberry Pi, Asahi, ARM laptops, an ARM VM on an Apple-silicon
-Mac — the published `.deb` is **amd64 only**, so use the same line above: it builds natively
-and `build-deb.sh` will produce a correctly-labelled `…_arm64.deb` for you. (The build now
-refuses to produce a package whose architecture doesn't match the binary it just compiled.)
+Mac — use the same line above: it builds natively, and `./build-deb.sh <ver>` gives you a
+correctly-labelled `…_arm64.deb`. (The build refuses to produce a package whose architecture
+doesn't match the binary it just compiled, so a mislabelled `.deb` can't slip out.)
+
+<details><summary>Cross-building an arm64 <code>.deb</code> on an amd64 host</summary>
+
+Point the existing repos at amd64, add an arm64 **ports** source (the main mirrors carry no
+ARM), then install the target toolchain and `-dev` packages:
+
+```sh
+# 1. pin every existing source to amd64 — deb822: add `Architectures: amd64` to each stanza;
+#    one-line .list files: `deb [arch=amd64] …`
+# 2. add arm64 from ports:
+sudo tee /etc/apt/sources.list.d/arm64-ports.sources >/dev/null <<'EOF'
+Types: deb
+Architectures: arm64
+URIs: http://ports.ubuntu.com/ubuntu-ports/
+Suites: noble noble-updates noble-security
+Components: main universe restricted multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+EOF
+sudo dpkg --add-architecture arm64 && sudo apt update
+sudo apt install crossbuild-essential-arm64 libibus-1.0-dev:arm64 \
+                 libpulse-dev:arm64 libcurl4-openssl-dev:arm64
+./build-deb.sh 1.3.0 arm64
+```
+
+`build-deb.sh` then sets `CXX` and points `PKG_CONFIG_LIBDIR` at the target's `.pc` files.
+The **self-test stays native** (it has to run on the build host to mean anything), so a
+cross-built package is checked by its ELF architecture and by testing it on a real ARM box —
+not by the build alone.
+</details>
 
 Already have the repo? Just:
 ```sh

@@ -11,14 +11,20 @@ cd "$(dirname "$0")"                     # linux/
 ENGINE=../windows/engine                 # the shared KLEngine lives here
 mkdir -p dist
 
-echo "[1/3] engine self-test (shared KLEngine on Linux)"
+# Cross-compiling (e.g. an arm64 package on an amd64 host): set CXX + PKGCONFIG to the
+# target's tools — build-deb.sh does this for you (`./build-deb.sh <ver> arm64`). The
+# SELF-TEST below deliberately stays native: it has to RUN here to mean anything.
+CXX="${CXX:-g++}"
+PKGCONFIG="${PKGCONFIG:-pkg-config}"
+
+echo "[1/3] engine self-test (shared KLEngine on Linux, native)"
 g++ -std=c++17 -O2 -I"$ENGINE" "$ENGINE/klengine_test.cpp" "$ENGINE/klengine.cpp" -o dist/kltest
 dist/kltest | grep -E '^[0-9]+/[0-9]+' | sed 's/^/      /'
 
-echo "[2/3] ibus-engine-bangla (with voice: libpulse-simple + libcurl)"
-g++ -std=c++17 -O2 -I"$ENGINE" $(pkg-config --cflags ibus-1.0 libpulse-simple libcurl) \
+echo "[2/3] ibus-engine-bangla (with voice: libpulse-simple + libcurl) [$CXX]"
+$CXX -std=c++17 -O2 -I"$ENGINE" $($PKGCONFIG --cflags ibus-1.0 libpulse-simple libcurl) \
     ibus-bangla.cpp "$ENGINE/klengine.cpp" \
-    -o dist/ibus-engine-bangla $(pkg-config --libs ibus-1.0 libpulse-simple libcurl)
+    -o dist/ibus-engine-bangla $($PKGCONFIG --libs ibus-1.0 libpulse-simple libcurl)
 
 echo "[3/3] local component XML (standalone test)"
 cat > dist/bangla.xml <<EOF
