@@ -16,7 +16,7 @@ from collections import deque
 HERE = os.path.dirname(os.path.abspath(__file__))
 UNICODE_SRC = os.path.join(HERE, "..", "keylayouts", "Bangla Unicode.keylayout")
 DEFAULT_OUT = os.path.join(HERE, "..", "keylayouts", "Bangla Phonetic.keylayout")
-KEYBOARD_ID = "-19020"
+KEYBOARD_ID = "-19021"
 HAS = "\u09CD"          # hasanta ্
 NUKTA = "\u09BC"        # nukta ়
 
@@ -115,7 +115,7 @@ def _joiner(ctx):
 
     র + ্ + য renders as a REPH over য (র্য) — right for কার্য, wrong for the loanwords
     everyone writes with a visible ya-fola: র‍্যাম, র‍্যাব, র‍্যালি. A ZWJ placed BEFORE the hasanta
-    before the hasanta suppresses the reph and gives র‍্য. Nothing is lost: reph has its own token (`rr`), so
+    suppresses the reph and gives র‍্য. Nothing is lost: reph has its own token (`rr`), so
     `rrzam` still produces র্যাম while `ryam`/`rZam` now produce র‍্যাম.
     """
     return ZWJ if ctx[0] == "C" and ctx[1] == "র" else ""

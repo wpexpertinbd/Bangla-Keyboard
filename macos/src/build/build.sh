@@ -57,6 +57,7 @@ $PB -c "Add :NSHumanReadableCopyright string 'BiswasHost - https://www.biswashos
 codesign --force --deep --sign - "$APP"
 codesign --verify --deep "$APP" || { echo "codesign verify FAILED"; exit 1; }
 touch "$APP"
+rm -rf "$DIST/$(basename "$APP")"   # replace, do not merge into a previous build's app
 cp -R "$APP" "$DIST/"   # also drop the app in dist/ for direct use
 
 # DMG (the app is self-contained — pkg is embedded inside it)

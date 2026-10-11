@@ -5,7 +5,7 @@ Intel). It installs the traditional **fixed (positional) Bangla layout** —
 typed the same way as on Windows — a **phonetic layout** (type Bangla the way it
 sounds: `ami` → আমি), plus a set of free Unicode Bangla fonts.
 
-> **Status: shipping — `v1.7.0`** (keyboard `.pkg`/`.dmg` + optional `Bangla Voice` companion).
+> **Status: shipping — `v1.8.0`** (keyboard `.pkg`/`.dmg` + optional `Bangla Voice` companion).
 >
 > Built and maintained by **[BiswasHost](https://www.biswashost.com)**.
 > No Java; just native macOS keyboard layouts (voice typing is a small optional menu-bar app).
