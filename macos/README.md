@@ -120,7 +120,8 @@ Open the app (unsigned → click **Done**, then *Open Anyway* in
 **Accessibility** (Privacy & Security → Accessibility) so it can type at the cursor.
 
 - **⌃⌥S** = Bangla voice · **⌃⌥D** = English voice · press again (or the menu) to stop.
-- **Universal binary** — runs on Apple Silicon and Intel Macs.
+- **Universal binary** (arm64 + x86_64). Apple Silicon is tested; the Intel slice is built and
+  signature-valid but **not yet confirmed on real Intel hardware** — reports welcome.
 - **Free, nothing stored** — correct Bangladeshi **bn-BD** + English via a free online
   speech service; the mic is live only while listening.
 - **Punctuation is spoken** (say the mark alone after a pause): "দাঁড়ি"→। , "কমা"→, ,
