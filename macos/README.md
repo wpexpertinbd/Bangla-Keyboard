@@ -5,7 +5,7 @@ Intel). It installs the traditional **fixed (positional) Bangla layout** —
 typed the same way as on Windows — a **phonetic layout** (type Bangla the way it
 sounds: `ami` → আমি), plus a set of free Unicode Bangla fonts.
 
-> **Status: shipping — `v1.8.0`** (keyboard `.pkg`/`.dmg` + optional `Bangla Voice` companion).
+> **Status: shipping — `v1.8.1`** (keyboard `.pkg`/`.dmg` — the `.dmg` also carries the optional `Bangla Voice` companion).
 >
 > Built and maintained by **[BiswasHost](https://www.biswashost.com)**.
 > No Java; just native macOS keyboard layouts (voice typing is a small optional menu-bar app).
@@ -111,13 +111,17 @@ which needs a paid Apple Developer ID.)
 ## 🎤 Voice typing (optional)
 
 A small **menu-bar companion** (`Bangla Voice.app`) lets you dictate instead of type.
-Download **`Bangla-Voice-macOS-*.zip`** from the
-[**latest release**](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest),
-unzip, and open the app (unsigned → click **Done**, then *Open Anyway* in
-**System Settings → Privacy & Security**). The first time, allow **Accessibility**
-(Privacy & Security → Accessibility) so it can type at the cursor.
+It ships **inside `Bangla Keyboard.dmg`** — open the disk image and drag **Bangla Voice**
+to your Applications folder (it is also published on its own as
+**`Bangla-Voice-macOS-*.zip`** on the
+[**latest release**](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest)).
+Open the app (unsigned → click **Done**, then *Open Anyway* in
+**System Settings → Privacy & Security**). The first time, allow **Microphone**, and
+**Accessibility** (Privacy & Security → Accessibility) so it can type at the cursor.
 
 - **⌃⌥S** = Bangla voice · **⌃⌥D** = English voice · press again (or the menu) to stop.
+- ⚠️ **Apple Silicon only** (the binary is arm64) — on an Intel Mac the keyboard works
+  normally but `Bangla Voice.app` will not launch.
 - **Free, nothing stored** — correct Bangladeshi **bn-BD** + English via a free online
   speech service; the mic is live only while listening.
 - **Punctuation is spoken** (say the mark alone after a pause): "দাঁড়ি"→। , "কমা"→, ,

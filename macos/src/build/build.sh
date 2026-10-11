@@ -63,6 +63,23 @@ cp -R "$APP" "$DIST/"   # also drop the app in dist/ for direct use
 # DMG (the app is self-contained — pkg is embedded inside it)
 rm -rf "$BUILD/dmg"; mkdir -p "$BUILD/dmg"
 cp -R "$APP" "$BUILD/dmg/"
+
+# Bangla Voice companion — folded in so the DMG is ONE download. ditto (not cp) so the
+# bundle's code signature survives the copy. Missing voice app = hard error, never a
+# silently keyboard-only DMG; SKIP_VOICE=1 is the explicit opt-out.
+VOICE="$ROOT/voice/dist/Bangla Voice.app"
+if [ -d "$VOICE" ]; then
+  ditto "$VOICE" "$BUILD/dmg/Bangla Voice.app"
+  codesign --verify --deep --strict "$BUILD/dmg/Bangla Voice.app" \
+    || { echo "Bangla Voice.app signature is invalid after copying into the DMG"; exit 1; }
+elif [ "${SKIP_VOICE:-0}" = "1" ]; then
+  echo "note: SKIP_VOICE=1 -> keyboard-only DMG, no Bangla Voice.app"
+else
+  echo "ERROR: no voice app at: $VOICE" >&2
+  echo "       build it with  voice/build.sh <version>  (or copy the released app there)," >&2
+  echo "       or re-run with  SKIP_VOICE=1  for a keyboard-only DMG." >&2
+  exit 1
+fi
 cp "$HERE/dmg-readme.txt" "$BUILD/dmg/Read Me.txt" 2>/dev/null || cp "$ROOT/README.md" "$BUILD/dmg/Read Me.txt" 2>/dev/null || true
 find "$BUILD/dmg" -name '._*' -delete; xattr -cr "$BUILD/dmg" 2>/dev/null || true
 hdiutil create -volname "Bangla Keyboard" -srcfolder "$BUILD/dmg" -ov -format UDZO "$DIST/Bangla Keyboard.dmg" >/dev/null

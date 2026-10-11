@@ -87,6 +87,67 @@ Privacy & Security -> Open Anyway  (same steps as above).
 
 
 ------------------------------------------------------------
+VOICE TYPING (optional)  -  "Bangla Voice"
+------------------------------------------------------------
+This disk image also contains  "Bangla Voice"  -  speak, and it types
+what you said into any app. The keyboard works fine without it.
+
+REQUIRES AN APPLE SILICON MAC (M1 or newer). On an Intel Mac the keyboard
+works normally, but this voice app will not open.
+
+1. Drag  "Bangla Voice"  into your  Applications  folder, then open it.
+   The first time macOS blocks it the same way as above:  Done  ->
+   System Settings -> Privacy & Security -> Open Anyway.
+
+2. It lives in the MENU BAR (a flag icon), not in the Dock.
+
+3. Allow  Microphone  when asked. Then, from its menu-bar icon, choose
+   "Grant Accessibility..."  so it can type into other apps.
+
+4. Control + Option + S  =  speak Bangla
+   Control + Option + D  =  speak English
+   Press the same keys again to stop listening.
+
+5. Speak the punctuation out loud:
+       দাঁড়ি -> ।     কমা -> ,     প্রশ্ন -> ?     বিস্ময় -> !
+
+PRIVACY: English is recognised ON YOUR MAC (nothing is sent anywhere).
+Bangla audio is sent to Google's free speech service to be recognised,
+only while you are holding a voice mode on. Nothing is ever recorded
+or stored.
+
+
+------------------------------------------------------------
+ভয়েস টাইপিং (ঐচ্ছিক)  -  "Bangla Voice"
+------------------------------------------------------------
+এই ডিস্ক ইমেজে  "Bangla Voice"  অ্যাপটিও আছে  -  মুখে বললেই যেকোনো অ্যাপে
+লিখে দেবে। এটি ছাড়াও কীবোর্ড পুরোপুরি কাজ করে।
+
+অ্যাপল সিলিকন (M1 বা নতুন) ম্যাক লাগবে। ইন্টেল ম্যাকে কীবোর্ড স্বাভাবিক
+কাজ করবে, কিন্তু এই ভয়েস অ্যাপটি খুলবে না।
+
+১।  "Bangla Voice"  টেনে  Applications  ফোল্ডারে নিন, তারপর খুলুন।
+    প্রথমবার ম্যাক উপরের মতোই আটকাবে:  Done  ->  System Settings ->
+    Privacy & Security  ->  Open Anyway।
+
+২।  অ্যাপটি  মেনুবারে  থাকে (পতাকা আইকন), ডকে নয়।
+
+৩।  মাইক্রোফোনের অনুমতি দিন। তারপর মেনুবারের আইকন থেকে
+    "Grant Accessibility..."  বেছে নিন, যাতে অন্য অ্যাপে লিখতে পারে।
+
+৪।  Control + Option + S  =  বাংলা বলুন
+    Control + Option + D  =  ইংরেজি বলুন
+    থামাতে আবার একই কী চাপুন।
+
+৫।  যতিচিহ্ন মুখে বলুন:
+        দাঁড়ি -> ।     কমা -> ,     প্রশ্ন -> ?     বিস্ময় -> !
+
+গোপনীয়তা:  ইংরেজি আপনার ম্যাকেই চেনা হয় (কিছু বাইরে যায় না)। বাংলার
+ক্ষেত্রে অডিও Google-এর ফ্রি স্পিচ সার্ভিসে পাঠানো হয়, শুধু যতক্ষণ ভয়েস
+মোড চালু থাকে। কিছুই রেকর্ড বা সংরক্ষণ করা হয় না।
+
+
+------------------------------------------------------------
 ------------------------------------------------------------
 TYPING - Bangla Phonetic  (type it the way it sounds)
 ------------------------------------------------------------
