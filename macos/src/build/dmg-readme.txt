@@ -92,9 +92,6 @@ VOICE TYPING (optional)  -  "Bangla Voice"
 This disk image also contains  "Bangla Voice"  -  speak, and it types
 what you said into any app. The keyboard works fine without it.
 
-REQUIRES AN APPLE SILICON MAC (M1 or newer). On an Intel Mac the keyboard
-works normally, but this voice app will not open.
-
 1. Drag  "Bangla Voice"  into your  Applications  folder, then open it.
    The first time macOS blocks it the same way as above:  Done  ->
    System Settings -> Privacy & Security -> Open Anyway.
@@ -122,9 +119,6 @@ or stored.
 ------------------------------------------------------------
 এই ডিস্ক ইমেজে  "Bangla Voice"  অ্যাপটিও আছে  -  মুখে বললেই যেকোনো অ্যাপে
 লিখে দেবে। এটি ছাড়াও কীবোর্ড পুরোপুরি কাজ করে।
-
-অ্যাপল সিলিকন (M1 বা নতুন) ম্যাক লাগবে। ইন্টেল ম্যাকে কীবোর্ড স্বাভাবিক
-কাজ করবে, কিন্তু এই ভয়েস অ্যাপটি খুলবে না।
 
 ১।  "Bangla Voice"  টেনে  Applications  ফোল্ডারে নিন, তারপর খুলুন।
     প্রথমবার ম্যাক উপরের মতোই আটকাবে:  Done  ->  System Settings ->

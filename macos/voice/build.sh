@@ -10,10 +10,26 @@ APP="$OUT/Bangla Voice.app"
 
 rm -rf "$OUT"; mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
-# compile (universal arm64+x86_64 where the SDK allows; arm64 minimum)
-swiftc -O "$HERE/Sources/"*.swift -o "$APP/Contents/MacOS/BanglaVoice" \
-  -framework AppKit -framework AVFoundation -framework CoreGraphics -framework Carbon \
-  -framework Speech
+# compile UNIVERSAL (arm64 + x86_64) so Intel Macs can run it too. swiftc builds one
+# architecture at a time, so build each and lipo them together. Deployment target matches
+# LSMinimumSystemVersion below.
+SLICES=()
+for A in arm64 x86_64; do
+  swiftc -O -target "$A-apple-macosx11.0" "$HERE/Sources/"*.swift -o "$OUT/BanglaVoice-$A" \
+    -framework AppKit -framework AVFoundation -framework CoreGraphics -framework Carbon \
+    -framework Speech
+  SLICES+=("$OUT/BanglaVoice-$A")
+done
+lipo -create "${SLICES[@]}" -output "$APP/Contents/MacOS/BanglaVoice"
+rm -f "${SLICES[@]}"
+
+# Never ship a single-arch build by accident: that is how the app ended up arm64-only and
+# unable to launch on Intel Macs.
+HAVE="$(lipo -archs "$APP/Contents/MacOS/BanglaVoice")"
+for A in arm64 x86_64; do
+  case " $HAVE " in *" $A "*) ;; *) echo "ERROR: binary is missing the $A slice (got: $HAVE)" >&2; exit 1;; esac
+done
+echo "architectures: $HAVE"
 
 # app icon (reuse the brand flag icon)
 cp "$HERE/../src/keylayouts/Bangla Unicode.icns" "$APP/Contents/Resources/AppIcon.icns"

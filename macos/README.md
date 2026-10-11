@@ -5,7 +5,7 @@ Intel). It installs the traditional **fixed (positional) Bangla layout** —
 typed the same way as on Windows — a **phonetic layout** (type Bangla the way it
 sounds: `ami` → আমি), plus a set of free Unicode Bangla fonts.
 
-> **Status: shipping — `v1.8.1`** (keyboard `.pkg`/`.dmg` — the `.dmg` also carries the optional `Bangla Voice` companion).
+> **Status: shipping — `v1.8.2`** (keyboard `.pkg`/`.dmg` — the `.dmg` also carries the optional `Bangla Voice` companion).
 >
 > Built and maintained by **[BiswasHost](https://www.biswashost.com)**.
 > No Java; just native macOS keyboard layouts (voice typing is a small optional menu-bar app).
@@ -120,8 +120,7 @@ Open the app (unsigned → click **Done**, then *Open Anyway* in
 **Accessibility** (Privacy & Security → Accessibility) so it can type at the cursor.
 
 - **⌃⌥S** = Bangla voice · **⌃⌥D** = English voice · press again (or the menu) to stop.
-- ⚠️ **Apple Silicon only** (the binary is arm64) — on an Intel Mac the keyboard works
-  normally but `Bangla Voice.app` will not launch.
+- **Universal binary** — runs on Apple Silicon and Intel Macs.
 - **Free, nothing stored** — correct Bangladeshi **bn-BD** + English via a free online
   speech service; the mic is live only while listening.
 - **Punctuation is spoken** (say the mark alone after a pause): "দাঁড়ি"→। , "কমা"→, ,

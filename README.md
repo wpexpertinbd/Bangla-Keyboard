@@ -14,7 +14,7 @@
 
 | OS | What it is | Status | Folder |
 |----|-----------|--------|--------|
-| 🍎 **macOS** | Native `.keylayout` (Unicode + Classic + **Phonetic**) + smart installer `.pkg`/`.dmg`; **voice typing** companion app (spoken punctuation) | ✅ **v1.8.1** | [`macos/`](macos/) |
+| 🍎 **macOS** | Native `.keylayout` (Unicode + Classic + **Phonetic**) + smart installer `.pkg`/`.dmg`; **voice typing** companion app (spoken punctuation) | ✅ **v1.8.2** | [`macos/`](macos/) |
 | 🪟 **Windows** | Tray app (Bangla Unicode + Classic + **Phonetic** + **voice typing**) running the shared engine, + a TSF IME | ✅ **v1.3.0** | [`windows/`](windows/) |
 | 🐧 **Linux** | IBus engine (Bangla Unicode + Classic + **Phonetic** + **voice typing**) running the shared engine | ✅ **v1.3.0** (Debian/Ubuntu + any IBus distro) | [`linux/`](linux/) |
 
@@ -25,7 +25,7 @@ Grab your platform's build from the [**releases page**](https://github.com/wpexp
 ### 🍎 macOS
 1. Download **`Bangla Keyboard.pkg`** from the [latest release](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest) → double-click → **Done** → **System Settings → Privacy & Security → Open Anyway** (unsigned build).
 2. Log out/in, then **System Settings → Keyboard → Text Input → Edit → `+` → Bangla** → add **Bangla Unicode**, **Classic** and/or **Phonetic** (type by sound: `ami` → আমি). Switch with **⌃Space**.
-3. **Voice** (optional): **`Bangla Keyboard.dmg`** also contains **`Bangla Voice`** — drag it to Applications, open it, allow Microphone + Accessibility → **⌃⌥S** Bangla · **⌃⌥D** English. (Also on its own as `Bangla-Voice-macOS-*.zip`. **Apple Silicon only**; the keyboard itself runs on Intel too.)
+3. **Voice** (optional): **`Bangla Keyboard.dmg`** also contains **`Bangla Voice`** — drag it to Applications, open it, allow Microphone + Accessibility → **⌃⌥S** Bangla · **⌃⌥D** English. (Also on its own as `Bangla-Voice-macOS-*.zip`. Universal — Apple Silicon and Intel.)
 
 More: [`macos/README.md`](macos/README.md).
 
