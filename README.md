@@ -1,7 +1,7 @@
 <h1 align="center">Bangla Keyboard</h1>
 
 <p align="center">
-  A free, open-source <b>fixed-layout Bangla keyboard</b> for <b>macOS, Windows, and Linux</b> — plus a <b>phonetic</b> layout on macOS.<br>
+  A free, open-source <b>fixed-layout Bangla keyboard</b> for <b>macOS, Windows, and Linux</b> — plus a <b>phonetic</b> layout on all three.<br>
   Type a prebase vowel before its consonant (the Windows-order habit) and get correct Unicode order.<br>
   No trademarked branding, no proprietary fonts — emits standard Unicode.
 </p>
