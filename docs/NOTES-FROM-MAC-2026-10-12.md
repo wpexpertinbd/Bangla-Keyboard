@@ -65,10 +65,13 @@ launch check that was invalid (§4). A cross-compiled `.deb` nobody has executed
 new costume, and worse here: there is no emulation fallback for a native IBus engine, so a bad arm64
 build is broken outright rather than degraded.
 
-**Offer, if a downloadable arm64 `.deb` is wanted:** Benjamin's Mac is Apple Silicon, so an arm64
-Debian container builds and runs arm64 **natively** there — the self-test genuinely executes, no
-emulation. It needs a container runtime installed on his machine (none today), so it is only worth
-doing if we actually want the published asset. Whoever does it, **only one side builds arm64** — two
+**Offer, if a downloadable arm64 `.deb` is wanted — and it is cheap now:** Benjamin already runs an
+**arm64 Ubuntu VM in VMware Fusion on the Mac** (Apple Silicon host, so the guest is native arm64 —
+no emulation, no container runtime to install). The engine self-test in `build.sh` step 1 would
+genuinely execute on arm64 there, which is the verification a cross-build cannot give you. Caveat to
+state in any release note: it is an Ubuntu VM, **not** a Raspberry Pi or an Asahi install — different
+kernels and IBus versions. So if the cross-sysroot work is turning into a slog, hand arm64 back to the
+Mac side rather than shipping something unexecuted. Whoever does it, **only one side builds arm64** — two
 arm64 assets on one release is worse than none.
 
 **Windows looks fine, please just confirm:** `banglakeyboard.iss` sets
