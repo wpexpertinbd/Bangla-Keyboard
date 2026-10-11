@@ -176,6 +176,17 @@ int main(){
     {"^a m i",                          u"\u0986\u09ae\u09bf"},
     {"^a ^m ^a ^r",                     u"\u0986\u09ae\u09be\u09dc"},
     {"^a ^m ^i",                        u"\u0986\u09ae\u09c0"},
+    {"r y a m",                         u"\u09b0\u200d\u09cd\u09af\u09be\u09ae"},
+    {"r ^z a m",                        u"\u09b0\u200d\u09cd\u09af\u09be\u09ae"},
+    {"r y a b",                         u"\u09b0\u200d\u09cd\u09af\u09be\u09ac"},
+    {"r r z a m",                       u"\u09b0\u09cd\u09af\u09be\u09ae"},
+    {"k a r r z o",                     u"\u0995\u09be\u09b0\u09cd\u09af"},
+    {"k ; ; o l o m",                   u"\u0995\u09bc\u09b2\u09ae"},
+    {"f ; ; a r s i",                   u"\u09ab\u09bc\u09be\u09b0\u09b8\u09bf"},
+    {"g ; ; o j o l",                   u"\u0997\u09bc\u099c\u09b2"},
+    {"^j",                              u"\u099c\u09bc"},
+    {"5 0 0 ^4 `",                      u"\u09eb\u09e6\u09e6\u20b9"},
+    {"2 5 ^4",                          u"\u09e8\u09eb\u09f3"},
   };
   bool a = run("Bangla Unicode", &bangla::unicode_table::TABLE, uni);
   bool b = run("Bangla Classic", &bangla::classic_table::TABLE, cls);

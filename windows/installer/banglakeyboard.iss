@@ -8,7 +8,7 @@
 ; and MyAppVersion below.
 
 #define MyAppName "Bangla Keyboard"
-#define MyAppVersion "1.2.1"
+#define MyAppVersion "1.3.0"
 #define MyAppPublisher "BiswasHost"
 #define MyAppExe "bangla-tray.exe"
 #define MyAppURL "https://github.com/wpexpertinbd/bangla-keyboard"

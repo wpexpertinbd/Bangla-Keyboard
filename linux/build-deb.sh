@@ -4,7 +4,7 @@
 # Needs: dpkg-deb (dpkg-dev) + the build deps (see build.sh).
 set -euo pipefail
 cd "$(dirname "$0")"
-VER="${1:-1.2.0}"
+VER="${1:-1.3.0}"
 ARCH="$(dpkg --print-architecture 2>/dev/null || echo amd64)"
 
 ./build.sh                                    # -> dist/ibus-engine-bangla (+ self-test)
@@ -28,7 +28,7 @@ cat > "$ROOT/usr/share/ibus/component/bangla.xml" <<'XML'
   <name>org.freedesktop.IBus.Bangla</name>
   <description>Bangla Keyboard (Unicode + Classic + Phonetic)</description>
   <exec>/usr/lib/ibus/ibus-engine-bangla --ibus</exec>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
   <author>BiswasHost</author>
   <license>MIT</license>
   <homepage>https://github.com/wpexpertinbd/bangla-keyboard</homepage>

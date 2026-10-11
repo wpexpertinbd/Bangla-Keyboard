@@ -20,6 +20,9 @@ KEYBOARD_ID = "-19020"
 HAS = "\u09CD"          # hasanta ্
 NUKTA = "\u09BC"        # nukta ়
 
+ZWJ = chr(0x200D)       # zero-width joiner: suppresses reph, so র + ya-fola = র‍্য (র‍্যাম)
+RUPEE = chr(0x20B9)     # ₹ Indian rupee (৳ stays on $; ₹ is $ then the accent key)
+
 # ---------------------------------------------------------------- rules (ours, MIT) ----
 CONS = {  # roman -> one consonant
     "k": "ক", "kh": "খ", "g": "গ", "G": "গ", "gh": "ঘ", "Gh": "ঘ", "Ng": "ঙ",
@@ -59,7 +62,7 @@ PAIRS_STR = """
 EXCEPTIONS = ["amr", "tOmr", "kamr", "jamr", "ekT", "apn"]
 
 DIGITS = dict(zip("0123456789", "০১২৩৪৫৬৭৮৯"))
-DIRECT_SPECIAL = {"$": "৳", "^": "ঁ"}
+DIRECT_SPECIAL = {"^": "ঁ"}   # $ is a token now (it has an accent-key alternate, ₹)
 
 def units(s):
     """split a consonant string into consonant units (consonant + optional nukta)"""
@@ -85,7 +88,13 @@ for r, (i, m) in VOWELS.items():
 TOK["aZ"] = ("V", "অ্যা", "্যা")
 TOK.update({"y": ("Y",), "w": ("W",), "Z": ("Z",), "ng": ("NG",), "rr": ("REPH",),
             ",,": ("HAS",), ",": ("P", ","), ".": ("P", "।"), ".`": ("P", "."),
-            ":": ("SIGN", "ঃ"), ":`": ("P", ":"), "`": ("BRK",), "t``": ("SIGN", "ৎ")})
+            ":": ("SIGN", "ঃ"), ":`": ("P", ":"), "`": ("BRK",), "t``": ("SIGN", "ৎ"),
+            # ;; = nukta, mirroring ,, = hasanta (both are marks under the letter). It is
+            # NOT on `..` because people really do type "..." and that must stay an ellipsis.
+            ";": ("P", ";"), ";;": ("NUK",),
+            # $ = ৳ (taka); $ then the accent key = ₹, the same "alternate of this key"
+            # convention as . / .` and : / :`
+            "$": ("P", "৳"), "$`": ("P", RUPEE)})
 
 PREFIXES = set()
 for t in TOK:
@@ -100,6 +109,16 @@ def longest_token_prefix(q):
     for k in range(len(q), 0, -1):
         if q[:k] in TOK: return q[:k]
     return None
+
+def _joiner(ctx):
+    """ZWJ when a ya-fola lands on র, else nothing.
+
+    র + ্ + য renders as a REPH over য (র্য) — right for কার্য, wrong for the loanwords
+    everyone writes with a visible ya-fola: র‍্যাম, র‍্যাব, র‍্যালি. A ZWJ placed BEFORE the hasanta
+    before the hasanta suppresses the reph and gives র‍্য. Nothing is lost: reph has its own token (`rr`), so
+    `rrzam` still produces র্যাম while `ryam`/`rZam` now produce র‍্যাম.
+    """
+    return ZWJ if ctx[0] == "C" and ctx[1] == "র" else ""
 
 def emit(m, ctx, nxt, pre):
     """output + new context for token m. ctx: ('S',) start, ('B',) after `, ('V',) after a
@@ -121,13 +140,22 @@ def emit(m, ctx, nxt, pre):
         return indep, ("V",)
     if kind == "VF": return sp[1], ("V",)
     if kind == "Y":
-        if c0 == "C": return HAS + "য", ("C", "য")       # ya-fola
+        if c0 == "C": return _joiner(ctx) + HAS + "য", ("C", "য")       # ya-fola
         if c0 in ("S", "B"): return "ইয়", ("C", "\u09DF")  # word start: ইয়াহু
         return "\u09DF", ("C", "\u09DF")
     if kind == "W":
         if c0 == "C": return HAS + "ব", ("C", "ব")       # ba-fola
         return "ও", ("V",)
-    if kind == "Z": return HAS + "য", ("C", "য")
+    if kind == "Z": return _joiner(ctx) + HAS + "য", ("C", "য")
+    if kind == "NUK":
+        # nukta attaches to the letter just typed (ক় ফ় গ়); the unit carries it along so a
+        # following consonant still sees one unit, exactly like the built-in ড় ঢ় য় জ়.
+        # IDEMPOTENT on purpose: a letter can only take one nukta, and without this guard
+        # ("C", u + NUKTA) would be a brand-new state every time, so the FSM search below
+        # would never terminate (ক় -> ক়় -> ক়়় -> …).
+        if c0 == "C" and not ctx[1].endswith(NUKTA): return NUKTA, ("C", ctx[1] + NUKTA)
+        if c0 == "C": return "", ctx
+        return NUKTA, ctx
     if kind == "NG":
         if nxt is not None and nxt in VOWEL_START: return "ঙ", ("C", "ঙ")   # রঙিন
         return "ং", ("V",)                                                  # বাংলা

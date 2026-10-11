@@ -19,6 +19,7 @@ the same layout on all three.
 | 3 | **Two consonants join automatically.** Don't want them joined? Put `` ` `` between them | `kolkata` → কল্কাতা ✗ · `` kol`kata `` → **কলকাতা** ✓ |
 | 4 | **`rr` = র্ (reph)**, `y` after a consonant = ্য | `korrmo` → কর্ম · `bybohar` → ব্যবহার |
 | 5 | **Long vowels are capitals**: `I` ী, `U` ূ, or double them | `jIbon` → জীবন · `dUr` → দূর · `kee` → কী |
+| 6 | **`ry` on র gives the loanword র‍্য**, not a reph | `ryam` → **র‍্যাম** · `ryali` → র‍্যালি · (a real reph is `rr`: `karrzo` → কার্য) |
 
 Caps Lock on by accident? **Nothing breaks** — Caps Lock alone is ignored, so only the
 Shift key changes a letter.
@@ -50,6 +51,7 @@ Shift key changes a letter.
 | `sundorI` | সুন্দরী | `bishwo` | বিশ্ব |
 | `bhaiyer` | ভাইয়ের | `jonyo` | জন্য |
 | `rong` | রং | `bangali` | বাঙালি |
+| `ryam` | র‍্যাম | `ryab` | র‍্যাব |
 | `okkhor` | অক্ষর | `shikkhok` | শিক্ষক |
 | `amra` | আমরা | `apni` | আপনি |
 
@@ -58,9 +60,11 @@ Shift key changes a letter.
 | Type | You get | | Type | You get |
 |------|---------|---|------|---------|
 | `.` | ।  (dari) | | `1234` | ১২৩৪ |
-| `` .` `` | . (a real full stop) | | `100$` | ১০০৳ |
-| `?` | ? | | `^` | ঁ  (`ca^d` → চাঁদ) |
-| `:` | ঃ  (`du:kh` → দুঃখ) | | `,,` | ্  (hasanta: `` Dok,,Tor `` → ডক্টর) |
+| `` .` `` | . (a real full stop) | | `100$` | ১০০৳ (taka) |
+| `?` | ? | | `` 500$` `` | ৫০০₹ (rupee) |
+| `:` | ঃ  (`du:kh` → দুঃখ) | | `^` | ঁ  (`ca^d` → চাঁদ) |
+| `;` | ; (a real semicolon) | | `,,` | ্  (hasanta: `` Dok,,Tor `` → ডক্টর) |
+| `;;` | ়  (nukta: `k;;olom` → ক়লম, `f;;arsi` → ফ়ারসি) | | `` ` `` | keeps two consonants apart |
 
 ## If you get the wrong word
 

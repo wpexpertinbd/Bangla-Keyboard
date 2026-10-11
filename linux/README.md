@@ -1,6 +1,6 @@
 # Bangla Keyboard — Linux port (IBus)
 
-> **Status: shipping — `linux-v1.2.0`.** An **IBus engine** that reuses the shared C++ **KLEngine** (the
+> **Status: shipping — `linux-v1.3.0`.** An **IBus engine** that reuses the shared C++ **KLEngine** (the
 > same keylayout-driven FSM as macOS + Windows), so output is **byte-identical**
 > (`f`→া, `Shift+f`→অ, `Shift+f f`→আ, reph reorders, conjuncts). Three engines:
 > **Bangla Unicode** + **Bangla Classic** + **Bangla Phonetic** (type by sound). Built +

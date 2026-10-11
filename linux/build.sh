@@ -27,7 +27,7 @@ cat > dist/bangla.xml <<EOF
   <name>org.freedesktop.IBus.Bangla</name>
   <description>Bangla Keyboard (Unicode + Classic + Phonetic)</description>
   <exec>$(pwd)/dist/ibus-engine-bangla --ibus</exec>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
   <author>BiswasHost</author>
   <license>MIT</license>
   <homepage>https://github.com/wpexpertinbd/bangla-keyboard</homepage>

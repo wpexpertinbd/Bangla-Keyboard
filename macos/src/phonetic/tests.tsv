@@ -132,3 +132,17 @@ Ami	আমি
 # Shift = the capital letter's meaning (R = ড়); Caps Lock alone is ignored (keyMap 3 = plain)
 AMAR	আমাড়
 AMI	আমী
+# ZWJ: a ya-fola on র is the loanword form র‍্য (ZWJ BEFORE the hasanta, as Bangla Wikipedia encodes র‍্যালি); a real reph still comes from `rr`
+ryam	র‍্যাম
+rZam	র‍্যাম
+ryab	র‍্যাব
+rrzam	র্যাম
+karrzo	কার্য
+# ;; = nukta (ক় ফ় গ়); a single ; is still a semicolon
+k;;olom	ক়লম
+f;;arsi	ফ়ারসি
+g;;ojol	গ়জল
+J	জ়
+# $ = taka, $` = rupee
+500$`	৫০০₹
+25$	২৫৳
