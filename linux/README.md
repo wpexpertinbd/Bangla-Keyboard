@@ -84,9 +84,18 @@ sudo apt install crossbuild-essential-arm64 libibus-1.0-dev:arm64 \
 ```
 
 `build-deb.sh` then sets `CXX` and points `PKG_CONFIG_LIBDIR` at the target's `.pc` files.
-The **self-test stays native** (it has to run on the build host to mean anything), so a
-cross-built package is checked by its ELF architecture and by testing it on a real ARM box —
-not by the build alone.
+The **self-test stays native** (it has to run on the build host to mean anything), so prove the
+cross-built code actually runs by executing it under emulation before publishing anything:
+
+```sh
+sudo apt install qemu-user-static
+aarch64-linux-gnu-g++ --sysroot=$SYSROOT -std=c++17 -O2 -finput-charset=UTF-8   ../windows/engine/klengine_test.cpp ../windows/engine/klengine.cpp -o /tmp/kltest-arm64
+qemu-aarch64-static -L $SYSROOT   -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib:$SYSROOT/usr/lib/aarch64-linux-gnu   /tmp/kltest-arm64          # must print the same 20/20, 12/12, 131/131
+```
+
+Also check the binary has **no `RPATH`/`RUNPATH`** (`readelf -d`) — a leaked sysroot path would
+send it looking for libraries that don't exist on the user's machine. Even then, emulation is
+not hardware: live typing through a real `ibus-daemon` on ARM still needs a real ARM box.
 </details>
 
 Already have the repo? Just:
