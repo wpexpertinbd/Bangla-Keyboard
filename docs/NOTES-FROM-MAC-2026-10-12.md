@@ -47,6 +47,29 @@ Mac. Nobody noticed because it was an optional side download. The fix was to bui
 then *assert* both are present so a single-arch build fails the script. Worth the same guard in
 `build-deb.sh`, plus an arm64 build if you can get a host (or a cross-build).
 
+### ⚠️ Condition on the arm64 build: RUN the arm64 binary before releasing it
+
+Benjamin says you are cross-building for arm64/amd64. Please don't ship the arm64 `.deb` until the
+arm64 output has actually been **executed**, not just produced:
+
+- `linux/build.sh` already runs the engine self-test (`dist/kltest`) as step 1 — make sure that run
+  happens **for the arm64 binary**, under `qemu-user-static` (`apt install qemu-user-static
+  binfmt-support`) or inside an arm64 container, not just for the amd64 one.
+- Plus one IBus smoke test on arm64: the engine starts and commits text.
+
+Why this is a hard condition and not a nicety: I shipped the macOS voice app's x86_64 slice in
+v1.8.2 having **never run it**, on the strength of a launch check that was invalid (see §4). A
+cross-compiled arm64 `.deb` that nobody has executed is the same mistake in a new costume — and
+worse here, because there is no emulation fallback for a native IBus engine, so a bad arm64 build is
+simply broken for those users rather than degraded.
+
+If running it turns out to be awkward on your side, say so and we'll do the arm64 build from
+Benjamin's Mac instead: it is Apple Silicon, so an arm64 Debian container builds and runs
+**natively** there — no emulation, and the self-test genuinely executes. That needs a container
+runtime installed on his machine (none is present today), so it is only worth doing if you are
+blocked. Either way, **one of us builds arm64, not both** — two arm64 assets on one release is worse
+than none.
+
 **Windows looks fine, please just confirm:** `banglakeyboard.iss` sets
 `ArchitecturesAllowed=x64compatible` / `ArchitecturesInstallIn64BitMode=x64compatible`, which admits
 ARM64 Windows running x64 under emulation. If that reading is right, ARM64 Windows is covered and
