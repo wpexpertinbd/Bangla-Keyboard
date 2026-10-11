@@ -5,7 +5,7 @@ set -e
 HERE="$(cd "$(dirname "$0")" && pwd)"
 VERSION="${1:-1.0.0}"
 APPID="com.biswashost.banglavoice"
-OUT="$HERE/dist"
+OUT="$HERE/dist.noindex"   # .noindex so Spotlight/Launchpad do not show the dev build as a 2nd app
 APP="$OUT/Bangla Voice.app"
 
 rm -rf "$OUT"; mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"

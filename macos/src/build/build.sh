@@ -67,7 +67,7 @@ cp -R "$APP" "$BUILD/dmg/"
 # Bangla Voice companion — folded in so the DMG is ONE download. ditto (not cp) so the
 # bundle's code signature survives the copy. Missing voice app = hard error, never a
 # silently keyboard-only DMG; SKIP_VOICE=1 is the explicit opt-out.
-VOICE="$ROOT/voice/dist/Bangla Voice.app"
+VOICE="$ROOT/voice/dist.noindex/Bangla Voice.app"
 if [ -d "$VOICE" ]; then
   ditto "$VOICE" "$BUILD/dmg/Bangla Voice.app"
   codesign --verify --deep --strict "$BUILD/dmg/Bangla Voice.app" \

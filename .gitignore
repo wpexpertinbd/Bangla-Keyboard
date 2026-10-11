@@ -1,5 +1,6 @@
 .build/
 dist/
+*.noindex/
 .DS_Store
 **/.DS_Store
 *.pax

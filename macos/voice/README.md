@@ -47,3 +47,25 @@ only network call is the speech request. Opt-in — you launch the app.
 Needs the Xcode command-line tools (Swift). Unsigned/ad-hoc → first launch via right-click →
 Open (or System Settings → Privacy & Security → Open Anyway). Real distribution wants a
 Developer ID + notarization (same as the rest of the project).
+
+## Testing the universal (arm64 + x86_64) build
+
+`build.sh` asserts both slices are present (`lipo -archs`) and `codesign --verify --arch <arch>`
+validates each one. Those are the checks that actually hold.
+
+⚠️ **`open --arch <arch> -a "Bangla Voice.app"` is NOT a usable way to test a slice.** The app
+aborts almost immediately with `EXC_CRASH (SIGABRT)`, namespace **TCC**,
+`__TCC_CRASHING_DUE_TO_PRIVACY_VIOLATION__`, claiming the bundle has no
+`NSSpeechRecognitionUsageDescription` — which it demonstrably does. Forcing the architecture
+breaks TCC's attribution of the request back to the app bundle, so the Speech authorization
+request looks like it came from a process with no usage description and macOS kills it. A plain
+`open -a` of the same bundle runs fine. Do not conclude from an `--arch` abort that the build is
+broken, and do not conclude from a surviving PID a few seconds later that it is sound — check
+`~/Library/Logs/DiagnosticReports/BanglaVoice-*.ips` for a new report either way.
+
+**So: running the x86_64 slice is still unproven.** The only real test is launching it on an
+Intel Mac. Rosetta on Apple Silicon would be acceptable coverage, but only through a launch path
+that keeps the bundle attribution intact.
+
+Dev builds go to `dist.noindex/` — Spotlight and Launchpad skip `*.noindex` folders, so the build
+output does not show up as a second "Bangla Voice" next to the one in `/Applications`.
