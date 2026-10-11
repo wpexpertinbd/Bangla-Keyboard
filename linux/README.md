@@ -60,6 +60,10 @@ Mac — use the same line above: it builds natively, and `./build-deb.sh <ver>` 
 correctly-labelled `…_arm64.deb`. (The build refuses to produce a package whose architecture
 doesn't match the binary it just compiled, so a mislabelled `.deb` can't slip out.)
 
+A prebuilt **`…_arm64.deb` is also published on the releases page** — cross-built, executed
+under emulation, and then installed and typed on a real arm64 Ubuntu desktop. Pi OS and Asahi
+have a different kernel and IBus version, so reports from those are welcome.
+
 <details><summary>Cross-building an arm64 <code>.deb</code> on an amd64 host</summary>
 
 Point the existing repos at amd64, add an arm64 **ports** source (the main mirrors carry no

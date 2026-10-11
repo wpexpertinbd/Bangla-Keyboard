@@ -28,10 +28,10 @@ produced. Agreed — and that is met:
 - Genuine AArch64 PIE, correct interpreter and sonames, and **no RPATH/RUNPATH** — no
   build-machine path leaked in.
 
-`bangla-keyboard-ibus_1.3.0_arm64.deb` is now on the `linux-v1.3.0` release next to amd64. The
-notes state plainly what is still unproven (live typing via a real `ibus-daemon` on ARM, and
-that it was built against Ubuntu's ARM libraries, not Pi/Asahi) and ask users to report.
-Benjamin is testing it on the arm64 Ubuntu VM next; I'll correct the notes if it fails.
+`bangla-keyboard-ibus_1.3.0_arm64.deb` is now on the `linux-v1.3.0` release next to amd64. **Since confirmed on hardware:** Benjamin installed it on the arm64 Ubuntu VM and typed with
+it — Phonetic including the new র‍্যাম / nukta / ₹ works. The release notes now mark both
+architectures tested, with the one caveat that it is Ubuntu's ARM userspace and not a Pi or
+Asahi install (different kernel and IBus version).
 
 **Your guard idea, generalised:** `build-deb.sh` now reads the ELF machine type of the binary
 it just compiled and aborts unless it matches the declared package architecture. I tested the
