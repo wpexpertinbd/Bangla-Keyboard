@@ -84,7 +84,12 @@ def type_text(u, text):
     ds = ctypes.c_uint32(0); kt = Carbon.LMGetKbdType(); out = []
     for vk, mods in keys_for(text):
         buf = (ctypes.c_uint16 * 64)(); ln = ctypes.c_ulong(0)
-        Carbon.UCKeyTranslate(u, vk, 0, mods, kt, 0, ctypes.byref(ds), 64, ctypes.byref(ln), buf)
+        st = Carbon.UCKeyTranslate(u, vk, 0, mods, kt, 0, ctypes.byref(ds), 64, ctypes.byref(ln), buf)
+        # A non-zero OSStatus means the engine never translated this key. Ignoring it would
+        # let an API failure be read as ordinary output and a test PASS on a broken layout.
+        if st != 0:
+            raise RuntimeError("UCKeyTranslate failed: OSStatus %d (vkey %d, mods %d) in %r"
+                               % (st, vk, mods, text))
         out.append(bytes(buf)[:2 * ln.value].decode("utf-16-le"))
     return "".join(out), ds.value
 
