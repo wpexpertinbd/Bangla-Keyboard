@@ -55,6 +55,11 @@ sudo apt update && sudo apt install -y git build-essential pkg-config libibus-1.
 cd ~ && git clone https://github.com/wpexpertinbd/bangla-keyboard.git && \
 cd bangla-keyboard/linux && sudo bash install.sh
 ```
+**On ARM (arm64/aarch64)** — Raspberry Pi, Asahi, ARM laptops, an ARM VM on an Apple-silicon
+Mac — the published `.deb` is **amd64 only**, so use the same line above: it builds natively
+and `build-deb.sh` will produce a correctly-labelled `…_arm64.deb` for you. (The build now
+refuses to produce a package whose architecture doesn't match the binary it just compiled.)
+
 Already have the repo? Just:
 ```sh
 cd bangla-keyboard && git pull

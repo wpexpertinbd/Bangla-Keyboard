@@ -13,6 +13,16 @@ ARCH="$(dpkg --print-architecture 2>/dev/null || echo amd64)"
 # which dpkg-deb rejects for the DEBIAN control dir.
 SRC_ICONS="$(pwd)/icons"
 BIN_BUILT="$(pwd)/dist/ibus-engine-bangla"
+
+# The package architecture comes from the BUILD HOST, so prove the binary we just built
+# really is that architecture. A mislabelled .deb installs happily and then simply never
+# runs — exactly the trap that shipped an arm64-only macOS voice app for four releases.
+ELF_MACHINE="$(readelf -h "$BIN_BUILT" | sed -n 's/^ *Machine: *//p')"
+case "$ARCH|$ELF_MACHINE" in
+    amd64\|*X86-64*|arm64\|*AArch64*|armhf\|*ARM*|i386\|*80386*) ;;
+    *) echo "ERROR: building a '$ARCH' package but the binary is '$ELF_MACHINE'" >&2; exit 1 ;;
+esac
+echo "arch: $ARCH ($ELF_MACHINE)"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 ROOT="$TMP/bangla-keyboard-ibus_${VER}_${ARCH}"
