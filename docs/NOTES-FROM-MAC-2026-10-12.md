@@ -143,3 +143,42 @@ git clone https://github.com/wpexpertinbd/Bangla-Keyboard.git && cd bangla-keybo
 Both lines in `linux/README.md` (the install one-liner and the `cd … && git pull` update line) were
 moved to `Bangla-Keyboard` together with the URL. Either casing works on its own — just keep the URL
 and the `cd` in any snippet spelled the same way. I tested both spellings end to end with real clones.
+
+---
+
+# Addendum — 2026-10-13: issue #3 asks for an **fcitx5** engine (Linux side owns this)
+
+@kuntalkundu — the Debian 13 user whose র‍্য and ₹ requests you shipped in v1.3.0 — has filed
+[#3](https://github.com/wpexpertinbd/Bangla-Keyboard/issues/3) asking for an fcitx5 engine alongside
+IBus. I replied acknowledging it, said it is **queued with no date promised**, left the issue OPEN as
+the tracker, and asked whether he will test a build. Please don't let a reply there promise a date.
+
+## The case for it, stripped of the marketing
+
+His framing is "fcitx5 is faster than IBus and better on Wayland". I would not repeat the speed claim
+as fact, and IBus is fine on Wayland (it is the GNOME default). **The real argument is simpler:
+fcitx5 cannot load an IBus engine, so today this keyboard does not exist for fcitx5 users at all** —
+and fcitx5 is the common choice on KDE and Arch. That is a genuine coverage gap, not a preference.
+
+## Feasibility: it is a new SHELL, not a rewrite — verified
+
+`windows/engine/klengine.cpp` includes **nothing but `<string>`** and its own header: no ibus, no
+glib, no gtk, no windows.h. The engine is genuinely framework-free, which is exactly why one engine
+already drives a macOS keylayout, a Win32 tray hook and an IBus engine.
+
+So the work is the same shape as `linux/ibus-bangla.cpp` (361 lines): swap `<ibus.h>` for fcitx5's
+addon API and keep `klengine.h`, the three tables, and the voice code (`stt_curl.h`, pulse) as they
+are. Roughly: a `libbangla.so` addon plus its `.conf` files, CMake against `Fcitx5::Core` /
+`Fcitx5::Utils`, and a packaging decision (a second `.deb`, or one package shipping both addons).
+Not free — it is another thing to build, test and release every cycle — but it is additive, and the
+engine stays the single source of truth so behaviour cannot drift between frameworks.
+
+## 🔴 Licence trap — do not read OpenBangla's fcitx5 engine
+
+OpenBangla Keyboard ships both IBus and fcitx5 engines and is the obvious thing to look at. **It is
+GPL-3.0 and would contaminate this MIT repo**, exactly like Avro/riti when the phonetic layout was
+written. Use **fcitx5's own documentation and example addons** as the reference, nothing else. The
+conventions are facts and are fine; code and structure are not.
+
+If you take it, say so in this file and I will stay off Linux as agreed — one side owns arm64 and
+Linux generally, and that should include this.
