@@ -37,7 +37,7 @@ toast. Voice is optional — the keyboard builds/works without a mic.)
 
 ## Install — Debian / Ubuntu (`.deb`, easiest)
 Download `bangla-keyboard-ibus_<ver>_amd64.deb` from the
-[**latest release**](https://github.com/wpexpertinbd/bangla-keyboard/releases), then:
+[**latest release**](https://github.com/wpexpertinbd/Bangla-Keyboard/releases), then:
 ```sh
 sudo apt install ./bangla-keyboard-ibus_*.deb   # pulls in ibus if needed
 ```
@@ -52,8 +52,8 @@ nor a compiler):
 ```sh
 sudo apt update && sudo apt install -y git build-essential pkg-config libibus-1.0-dev \
   ibus libpulse-dev libcurl4-openssl-dev libnotify-bin && \
-cd ~ && git clone https://github.com/wpexpertinbd/bangla-keyboard.git && \
-cd bangla-keyboard/linux && sudo bash install.sh
+cd ~ && git clone https://github.com/wpexpertinbd/Bangla-Keyboard.git && \
+cd Bangla-Keyboard/linux && sudo bash install.sh
 ```
 **On ARM (arm64/aarch64)** — Raspberry Pi, Asahi, ARM laptops, an ARM VM on an Apple-silicon
 Mac — use the same line above: it builds natively, and `./build-deb.sh <ver>` gives you a
@@ -104,7 +104,7 @@ not hardware: live typing through a real `ibus-daemon` on ARM still needs a real
 
 Already have the repo? Just:
 ```sh
-cd bangla-keyboard && git pull
+cd Bangla-Keyboard && git pull
 cd linux
 bash build.sh           # -> linux/dist/ibus-engine-bangla (+ self-test 20/20, 12/12, 120/120)
 sudo bash install.sh    # installs the binary + IBus component, system-wide

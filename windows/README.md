@@ -42,7 +42,7 @@
 
 ## Install & use (end users)
 1. Download **`BanglaKeyboard-Setup-*.exe`** from the
-   [**releases page**](https://github.com/wpexpertinbd/bangla-keyboard/releases) and run it —
+   [**releases page**](https://github.com/wpexpertinbd/Bangla-Keyboard/releases) and run it —
    **per-user, no admin needed**. It's unsigned, so SmartScreen shows a warning → **More info →
    Run anyway**. It installs the tray app (+ free Bangla Unicode fonts) and can start at login.
 2. A **tray icon** appears. Click it to switch **Bangla Unicode / Bangla Classic / Bangla

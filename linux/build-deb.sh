@@ -70,7 +70,7 @@ cat > "$ROOT/usr/share/ibus/component/bangla.xml" <<'XML'
   <version>1.3.0</version>
   <author>BiswasHost</author>
   <license>MIT</license>
-  <homepage>https://github.com/wpexpertinbd/bangla-keyboard</homepage>
+  <homepage>https://github.com/wpexpertinbd/Bangla-Keyboard</homepage>
   <textdomain>ibus-bangla</textdomain>
   <engines>
     <engine>
@@ -110,7 +110,7 @@ Maintainer: BiswasHost <benjamin.biswas@gmail.com>
 Depends: ibus, libstdc++6, libc6, libpulse0, libnotify-bin, libcurl4t64 | libcurl4
 Section: utils
 Priority: optional
-Homepage: https://github.com/wpexpertinbd/bangla-keyboard
+Homepage: https://github.com/wpexpertinbd/Bangla-Keyboard
 Description: Bangla Keyboard - fixed Windows-style Bangla layout (IBus)
  Bangla Unicode + Bangla Classic IBus engines that reproduce the macOS and
  Windows Bangla Keyboard exactly (prebase-vowel and reph reordering), driven by

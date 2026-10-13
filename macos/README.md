@@ -79,13 +79,13 @@ This build is **not code-signed** (no paid Apple Developer ID), so macOS
 Gatekeeper will block a plain double-click. Pick whichever is easier:
 
 ### ✅ Easiest — the installer package (`.pkg`)
-1. From the [**latest release**](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest) download **`Bangla Keyboard.pkg`**.
+1. From the [**latest release**](https://github.com/wpexpertinbd/Bangla-Keyboard/releases/latest) download **`Bangla Keyboard.pkg`**.
 2. Double-click it → macOS blocks it → click **Done**, then **System Settings →
    Privacy & Security → Open Anyway** (right-click → Open no longer works on recent macOS).
 3. Follow the installer and enter your admin password.
 
 ### Or — the installer app (adds Reinstall / Uninstall)
-1. From the [**latest release**](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest) download the **`.dmg`** and open it.
+1. From the [**latest release**](https://github.com/wpexpertinbd/Bangla-Keyboard/releases/latest) download the **`.dmg`** and open it.
 2. Try to open **`Bangla Keyboard Installer`** once → macOS blocks it.
 3. **System Settings → Privacy & Security**, scroll down, click **"Open Anyway"**,
    then open the app again. It offers **Install / Reinstall / Uninstall**.
@@ -114,7 +114,7 @@ A small **menu-bar companion** (`Bangla Voice.app`) lets you dictate instead of 
 It ships **inside `Bangla Keyboard.dmg`** — open the disk image and drag **Bangla Voice**
 to your Applications folder (it is also published on its own as
 **`Bangla-Voice-macOS-*.zip`** on the
-[**latest release**](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest)).
+[**latest release**](https://github.com/wpexpertinbd/Bangla-Keyboard/releases/latest)).
 Open the app (unsigned → click **Done**, then *Open Anyway* in
 **System Settings → Privacy & Security**). The first time, allow **Microphone**, and
 **Accessibility** (Privacy & Security → Accessibility) so it can type at the cursor.

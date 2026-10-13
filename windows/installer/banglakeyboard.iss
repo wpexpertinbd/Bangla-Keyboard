@@ -11,7 +11,7 @@
 #define MyAppVersion "1.3.0"
 #define MyAppPublisher "BiswasHost"
 #define MyAppExe "bangla-tray.exe"
-#define MyAppURL "https://github.com/wpexpertinbd/bangla-keyboard"
+#define MyAppURL "https://github.com/wpexpertinbd/Bangla-Keyboard"
 
 [Setup]
 AppId={{5BD4FB21-7946-4912-98C0-C178E33747BD}

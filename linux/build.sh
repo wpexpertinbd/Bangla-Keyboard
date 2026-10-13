@@ -36,7 +36,7 @@ cat > dist/bangla.xml <<EOF
   <version>1.3.0</version>
   <author>BiswasHost</author>
   <license>MIT</license>
-  <homepage>https://github.com/wpexpertinbd/bangla-keyboard</homepage>
+  <homepage>https://github.com/wpexpertinbd/Bangla-Keyboard</homepage>
   <textdomain>ibus-bangla</textdomain>
   <engines>
     <engine>

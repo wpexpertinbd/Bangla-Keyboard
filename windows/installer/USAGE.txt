@@ -77,5 +77,5 @@ QUIT
 SmartScreen note: this build is not code-signed yet, so Windows may show
 "Windows protected your PC". Click "More info" -> "Run anyway".
 
-MIT licensed. Free & open-source. https://github.com/wpexpertinbd/bangla-keyboard
+MIT licensed. Free & open-source. https://github.com/wpexpertinbd/Bangla-Keyboard
 Made by BiswasHost.

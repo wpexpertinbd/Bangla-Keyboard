@@ -20,24 +20,24 @@
 
 ## Install & use
 
-Grab your platform's build from the [**releases page**](https://github.com/wpexpertinbd/bangla-keyboard/releases), then:
+Grab your platform's build from the [**releases page**](https://github.com/wpexpertinbd/Bangla-Keyboard/releases), then:
 
 ### 🍎 macOS
-1. Download **`Bangla Keyboard.pkg`** from the [latest release](https://github.com/wpexpertinbd/bangla-keyboard/releases/latest) → double-click → **Done** → **System Settings → Privacy & Security → Open Anyway** (unsigned build).
+1. Download **`Bangla Keyboard.pkg`** from the [latest release](https://github.com/wpexpertinbd/Bangla-Keyboard/releases/latest) → double-click → **Done** → **System Settings → Privacy & Security → Open Anyway** (unsigned build).
 2. Log out/in, then **System Settings → Keyboard → Text Input → Edit → `+` → Bangla** → add **Bangla Unicode**, **Classic** and/or **Phonetic** (type by sound: `ami` → আমি). Switch with **⌃Space**.
 3. **Voice** (optional): **`Bangla Keyboard.dmg`** also contains **`Bangla Voice`** — drag it to Applications, open it, allow Microphone + Accessibility → **⌃⌥S** Bangla · **⌃⌥D** English. (Also on its own as `Bangla-Voice-macOS-*.zip`. Universal binary; Intel not yet confirmed on real hardware.)
 
 More: [`macos/README.md`](macos/README.md).
 
 ### 🪟 Windows
-1. Download **`BanglaKeyboard-Setup-*.exe`** (Windows release) from the [releases page](https://github.com/wpexpertinbd/bangla-keyboard/releases) → run it (**per-user, no admin**; SmartScreen → *More info → Run anyway*).
+1. Download **`BanglaKeyboard-Setup-*.exe`** (Windows release) from the [releases page](https://github.com/wpexpertinbd/Bangla-Keyboard/releases) → run it (**per-user, no admin**; SmartScreen → *More info → Run anyway*).
 2. A **tray icon** appears — pick **Bangla Unicode / Classic / Phonetic / English**. Shortcuts: **Ctrl+Alt+V** Unicode · **Ctrl+Alt+B** Classic · **Ctrl+Alt+P** Phonetic (each toggles back to English). Type in any app.
 3. **Voice** (opt-in at install): **Ctrl+Alt+S** Bangla · **Ctrl+Alt+D** English.
 
 More: [`windows/README.md`](windows/README.md).
 
 ### 🐧 Linux (Debian / Ubuntu + any IBus distro)
-1. Download **`bangla-keyboard-ibus_*.deb`** (Linux release) from the [releases page](https://github.com/wpexpertinbd/bangla-keyboard/releases): `sudo apt install ./bangla-keyboard-ibus_*.deb`  (other distros, or building from source on a fresh machine: [`linux/README.md`](linux/README.md) has a single line that installs the tools, clones and builds).
+1. Download **`bangla-keyboard-ibus_*.deb`** (Linux release) from the [releases page](https://github.com/wpexpertinbd/Bangla-Keyboard/releases): `sudo apt install ./bangla-keyboard-ibus_*.deb`  (other distros, or building from source on a fresh machine: [`linux/README.md`](linux/README.md) has a single line that installs the tools, clones and builds).
 2. Log out/in, then **Settings → Keyboard → Input Sources → `+` → Bangla → Bangla (Unicode)** (and/or **Classic** / **Phonetic**). Switch with **Super+Space**.
 3. **Voice**: **Ctrl+Alt+S** Bangla · **Ctrl+Alt+D** English.
 
