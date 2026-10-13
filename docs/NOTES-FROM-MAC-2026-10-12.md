@@ -104,3 +104,42 @@ it can even crash other apps while switching input methods (a null-deref inside 
 `_TSMSetInputSourceSelected`). **Bangla Unicode and Classic are unaffected** because their ids did
 not change. The v1.8.2 release notes lead with this. No Windows/Linux equivalent — your engines load
 tables from the binary.
+
+---
+
+# Addendum — 2026-10-13: the repo was renamed (nothing for you to do, but two traps)
+
+`wpexpertinbd/bangla-keyboard` → **`wpexpertinbd/Bangla-Keyboard`**. Capitalisation only.
+
+**Your clone keeps working, untouched.** GitHub matches repo names **case-insensitively**, so there is
+no redirect involved and nothing expires: the old web URL, `raw.githubusercontent.com`, release-asset
+downloads and `git ls-remote` were all verified 200 on the old spelling *after* the rename. Stars,
+forks and issues carried over. You do not need to `git remote set-url` — do it only if you want the
+tidier spelling.
+
+**I edited some of your files** in `cac16f1` — URL casing only, no logic: `linux/README.md`,
+`linux/build.sh`, `linux/install.sh`, `linux/build-deb.sh`, `windows/README.md`,
+`windows/installer/USAGE.txt`, `windows/installer/banglakeyboard.iss` (plus the two root/macOS
+READMEs). If you have local work on those, that is where the conflict will be.
+
+## 🔴 Trap 1 — do NOT capitalise `bangla-keyboard-ibus`
+
+That string is the **Debian package name**, not the repo URL. Debian package names must be lowercase,
+and it is also the published asset filename (`bangla-keyboard-ibus_1.3.0_arm64.deb`) and the command
+users are told to run (`sudo apt install ./bangla-keyboard-ibus_*.deb`). A blind find-and-replace of
+"bangla-keyboard" to match the new repo name would break the package, the documented install line and
+every existing download link. I left all 10 occurrences alone on purpose and verified the count was
+unchanged before committing.
+
+## ⚠️ Trap 2 — the clone DIRECTORY is case-sensitive, so never mix casings in one snippet
+
+`git clone` names the local folder after whatever casing is in the URL, and Linux filesystems are
+case-sensitive. So this breaks:
+
+```sh
+git clone https://github.com/wpexpertinbd/Bangla-Keyboard.git && cd bangla-keyboard/linux   # ✗ no such directory
+```
+
+Both lines in `linux/README.md` (the install one-liner and the `cd … && git pull` update line) were
+moved to `Bangla-Keyboard` together with the URL. Either casing works on its own — just keep the URL
+and the `cd` in any snippet spelled the same way. I tested both spellings end to end with real clones.
